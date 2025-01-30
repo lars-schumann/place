@@ -1,0 +1,21 @@
+._canvas_zoom {
+    border: solid red 1px;
+    width: fit-content;
+    height: fit-content;
+    transform: scale(1);
+    image-rendering: pixelated;
+}
+
+._canvas_move {
+    border: solid blue 1px;
+    width: fit-content;
+    height: fit-content;
+    transform: translate(0px, 0px);
+
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

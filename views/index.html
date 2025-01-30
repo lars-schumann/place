@@ -11,17 +11,31 @@
     <link rel="stylesheet" href="/static/styles/styles.css">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 
-    <script src="/static/scripts/main.js"></script>
+    <script type="module" src="/static/scripts/main.js"></script>
+
+
 
 
 </head>
 
 <body>
     <h1>whats good</h1>
-    <canvas id="_canvas" width="1000" height="1000"></canvas>
+
+    <div class="_canvas_zoom" id="_canvas_zoom">
+        <div class="_canvas_move" id="_canvas_move">
+            <canvas id="_canvas" width="1000" height="1000"></canvas>
+        </div>
+    </div>
 
     <input type="text" id="placeInput" placeholder="0-0-0" />
-    <button onclick="sendPlacement()">Submit</button>
+    <button onclick="sendPlacement()">place</button>
+
 </body>
+
+<script>
+    function sendPlacement() {
+        fetch(`/_cells/${document.getElementById('placeInput').value}`);
+    }
+</script>
 
 </html>
