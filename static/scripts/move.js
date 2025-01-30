@@ -15,8 +15,8 @@ function handleDown(event) {
 function handleDrag(event) {
     //console.log(event.buttons);
     if (event.buttons == 1) {
-        transform[0] += event.movementX / scale;
-        transform[1] += event.movementY / scale;
+        transform[0] += event.movementX;
+        transform[1] += event.movementY;
         const element = document.getElementById('_canvas_move');
         element.style.transform = `translate(${transform[0]}px, ${transform[1]}px)`;
     }

@@ -4,6 +4,8 @@
     height: fit-content;
     transform: scale(1);
     image-rendering: pixelated;
+    margin: 0;
+    padding: 0;
 }
 
 ._canvas_move {
@@ -11,7 +13,9 @@
     width: fit-content;
     height: fit-content;
     transform: translate(0px, 0px);
-
+    z-index: -1;
+    margin: 0;
+    padding: 0;
 }
 
 body {
