@@ -2,6 +2,7 @@ let transform = [0.0, 0.0]
 const mover = document.getElementById('_canvas_move');
 
 function handleMove(event) {
+
     //console.log(event.buttons);
     if (event.buttons == 1) {
         transform[0] += event.movementX;
@@ -12,8 +13,6 @@ function handleMove(event) {
 
 export function initMove() {
 
-    mover.addEventListener("mousemove", (event) => {
-        handleMove(event);
-    });
+    mover.addEventListener("mousemove", handleMove);
 
 }
