@@ -1,23 +1,19 @@
 export let scale = 1.0;
+const scaleFactor = 1.4;
+const zoomer = document.getElementById('_canvas_zoom');
 
-function changeCanvasScale(action) {
-    const element = document.getElementById('_canvas_zoom');
-    const scaleFactor = 1.4;
+function handleWheel(e) {
 
-    if (action === 'inc') {
-        scale = scale * scaleFactor;
-    } else if (action === 'dec') {
-        scale = scale / scaleFactor;
-    }
+    const pow = e.deltaY < 0 ? 1 : -1;
+    scale = scale * Math.pow(scaleFactor, pow);
 
     scale = Math.max(1.0, Math.min(40.0, scale));
-
-    element.style.transform = `scale(${scale})`;
+    zoomer.style.transform = `scale(${scale})`;
 }
 
 
 export function initZoom() {
-    document.getElementById('_canvas_zoom').addEventListener("wheel", (event) => {
-        event.deltaY < 0 ? changeCanvasScale('inc') : changeCanvasScale('dec');
+    zoomer.addEventListener("wheel", (event) => {
+        handleWheel(event)
     });
 }

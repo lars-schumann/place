@@ -6,6 +6,8 @@
     image-rendering: pixelated;
     margin: 0;
     padding: 0;
+    transition: transform 0.4s ease;
+    position: relative;
 }
 
 ._canvas_move {
@@ -16,10 +18,28 @@
     z-index: -1;
     margin: 0;
     padding: 0;
+    transition: transform 0.0s ease;
+}
+
+._canvas_grid {
+    position: absolute;
+}
+
+._canvas_cell {}
+
+._grid_select {
+    border: 1px solid black;
+    width: 1px;
+    height: 1px;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    pointer-events: none;
 }
 
 body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-color: rgb(255, 254, 249);
 }

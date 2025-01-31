@@ -26,9 +26,9 @@ type point_in_time struct {
 }
 
 const (
-	cells_x_dim      = 1000
-	cells_y_dim      = 1000
-	update_keep_time = 5 * time.Second
+	cells_x_dim      = 100
+	cells_y_dim      = 100
+	update_keep_time = 2 * time.Second
 )
 
 var cells [cells_x_dim][cells_y_dim]int
@@ -38,8 +38,8 @@ func main() {
 
 	for col := range cells {
 		for row := range cells[col] {
-			cells[col][row] = randRange(0, 15)
-			//cells[col][row] = 0
+			//cells[col][row] = randRange(0, 15)
+			cells[col][row] = (col + row*2) % 16
 		}
 	}
 
@@ -69,7 +69,9 @@ func main() {
 			}
 		}
 		cells_updates = trimmed_updates
-		fmt.Println(points_to_send)
+		if len(points_to_send) > 0 {
+			fmt.Println(points_to_send)
+		}
 		return c.JSON(points_to_send)
 	})
 
@@ -77,6 +79,12 @@ func main() {
 		x, _ := strconv.Atoi(c.Params("x"))
 		y, _ := strconv.Atoi(c.Params("y"))
 		col, _ := strconv.Atoi(c.Params("col"))
+
+		if !(0 <= x && x < cells_x_dim) || !(0 <= y && y < cells_y_dim) || !(0 <= col && col <= 15) {
+			return c.JSON(fiber.Map{
+				"_message": "nuh uh wrong input buddy",
+			})
+		}
 
 		cells[x][y] = col
 		point_with_time := point_in_time{point{x, y, col}, time.Now()}
