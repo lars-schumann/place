@@ -32,7 +32,7 @@ function handleWheel(event) {
 
     mover.style.transition = `transform 0.1s ease`;
     easeCounter++;
-    console.log(easeCounter);
+    //console.log(easeCounter);
     //    transition: transform 0.0s ease;
 
 

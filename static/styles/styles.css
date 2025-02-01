@@ -29,6 +29,7 @@
     left: 0px;
     position: absolute;
     pointer-events: none;
+    transition: transform 1.0s ease;
 }
 
 body {
