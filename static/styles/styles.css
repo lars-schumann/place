@@ -27,9 +27,11 @@
     height: 1px;
     top: 0px;
     left: 0px;
+    transform: translate(0px, 0px);
     position: absolute;
     pointer-events: none;
-    transition: transform 1.0s ease;
+    transition: transform 0.05s ease;
+    opacity: 1.0;
 }
 
 body {

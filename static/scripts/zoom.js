@@ -35,7 +35,6 @@ function handleWheel(event) {
     //console.log(easeCounter);
     //    transition: transform 0.0s ease;
 
-
     if (event.deltaY < 0) {
         moveCanvas(-mouseX * (scaleFactor - 1), -mouseY * (scaleFactor - 1));
     } else {
@@ -43,7 +42,8 @@ function handleWheel(event) {
     }
 
     setTimeout(() => {
-        console.log(--easeCounter);
+        --easeCounter;
+        console.log(easeCounter);
         if (easeCounter == 0) {
             mover.style.transition = `transform 0.0s ease`;
         }

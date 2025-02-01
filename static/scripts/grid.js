@@ -33,10 +33,10 @@ export function handleMouse(event) {
     transform[0] = gridRect.left + currentCell[0] * scale;
     transform[1] = gridRect.top + currentCell[1] * scale;
 
-    select.style.left = `${transform[0]}px`;
-    select.style.top = `${transform[1]}px`;
+    select.style.transform = `translate(${transform[0]}px, ${transform[1]}px)`;
     select.style.width = `${scale}px`;
     select.style.height = `${scale}px`;
+    //select.style.opacity = `${scale * scale / (64 * 64)}`;
 }
 
 function updateCell() {
@@ -47,5 +47,5 @@ export async function initGrid() {
 
     grid.addEventListener("mousemove", handleMouse);
     setInterval(() => handleMouse(0), 1);
-    grid.addEventListener("wheel", handleMouse);
+    //essgrid.addEventListener("wheel", handleMouse);
 }
