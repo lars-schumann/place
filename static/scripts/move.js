@@ -1,13 +1,18 @@
 let transform = [0.0, 0.0]
-const mover = document.getElementById('_canvas_move');
+export const mover = document.getElementById('_canvas_move');
 
+
+export function moveCanvas(dx, dy) {
+    transform[0] += dx;
+    transform[1] += dy;
+    mover.style.transform = `translate(${transform[0]}px, ${transform[1]}px)`;
+
+}
 function handleMove(event) {
 
     //console.log(event.buttons);
     if (event.buttons == 1) {
-        transform[0] += event.movementX;
-        transform[1] += event.movementY;
-        mover.style.transform = `translate(${transform[0]}px, ${transform[1]}px)`;
+        moveCanvas(event.movementX, event.movementY);
     }
 }
 

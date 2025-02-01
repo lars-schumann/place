@@ -1,10 +1,10 @@
-import { setCanvasSize, fetchData } from "./util.js";
+import { getCellsDim } from "./util.js";
 import { scale } from "./zoom.js";
 
 const grid = document.getElementById('_canvas_cell');
 const select = document.getElementById('_grid_select');
 let cellsDim;
-let currentCell = [-1, -1];
+export let currentCell = [-1, -1];
 const transform = [0.0, 0.0];
 
 export function handleMouse(event) {
@@ -33,9 +33,8 @@ export function handleMouse(event) {
 }
 
 export async function initGrid() {
-    cellsDim = await fetchData('/_cells/dim');
+    cellsDim = await getCellsDim();
 
     grid.addEventListener("mousemove", handleMouse);
-    // If needed in the future, uncomment and implement zoom handling
     // grid.addEventListener("wheel", handleZoom);
 }
