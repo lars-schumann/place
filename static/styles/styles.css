@@ -6,7 +6,7 @@
     image-rendering: pixelated;
     margin: 0;
     padding: 0;
-    transition: transform 0.1s ease;
+    transition: transform 0.05s ease;
     position: relative;
 }
 

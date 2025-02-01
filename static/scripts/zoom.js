@@ -7,6 +7,15 @@ let easeCounter = 0;
 
 function handleWheel(event) {
 
+    if (easeCounter) {
+        return;
+    }
+    easeCounter++;
+    setTimeout(() => {
+        easeCounter--;
+    }, 50);
+
+
     const pow = event.deltaY < 0 ? 1 : -1;
 
     if ((pow == -1 && scale == 1) || (pow == 1 && scale == 64)) {
@@ -30,10 +39,8 @@ function handleWheel(event) {
     const xPercent = mouseX / zoomRect.width - .5;
     const yPercent = mouseY / zoomRect.height - .5;
 
-    mover.style.transition = `transform 0.1s ease`;
-    easeCounter++;
-    //console.log(easeCounter);
-    //    transition: transform 0.0s ease;
+    mover.style.transition = `transform 0.05s ease`;
+
 
     if (event.deltaY < 0) {
         moveCanvas(-mouseX * (scaleFactor - 1), -mouseY * (scaleFactor - 1));
@@ -42,12 +49,8 @@ function handleWheel(event) {
     }
 
     setTimeout(() => {
-        --easeCounter;
-        console.log(easeCounter);
-        if (easeCounter == 0) {
-            mover.style.transition = `transform 0.0s ease`;
-        }
-    }, 200);
+        mover.style.transition = `transform 0.0s ease`;
+    }, 50);
 
 
     //console.log(mouseX, mouseY);

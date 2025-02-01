@@ -9,6 +9,10 @@ export let currentCell = [-1, -1];
 const transform = [0.0, 0.0];
 let lastKnownMousePos = [0.0, 0.0];
 
+const clicktime = 200;
+
+let clickDownTime = Infinity;
+
 export function handleMouse(event) {
 
     if (event != 0) {
@@ -39,6 +43,23 @@ export function handleMouse(event) {
     //select.style.opacity = `${scale * scale / (64 * 64)}`;
 }
 
+function handleMouseDown(event) {
+    clickDownTime = Date.now();
+}
+
+function handleMouseUp(event) {
+    if ((Date.now() - clickDownTime) < clicktime) {
+        console.log(Date.now() - clickDownTime);
+        if (document.getElementById('_color_select')) {
+            fetch(`/_cells/${currentCell[0]}-${currentCell[1]}-${document.getElementById('_color_select').value}`);
+        }
+    }
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 function updateCell() {
 
 }
@@ -46,6 +67,9 @@ export async function initGrid() {
     cellsDim = await getCellsDim();
 
     grid.addEventListener("mousemove", handleMouse);
-    setInterval(() => handleMouse(0), 1);
-    //essgrid.addEventListener("wheel", handleMouse);
+    setInterval(() => handleMouse(0), 10);
+    //grid.addEventListener("wheel", handleMouse);
+    grid.addEventListener("mousedown", handleMouseDown);
+    grid.addEventListener("mouseup", handleMouseUp);
+
 }
