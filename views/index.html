@@ -9,6 +9,7 @@
     <meta name="description" content="rplace clone">
 
     <link rel="stylesheet" href="/static/styles/styles.css">
+    <link rel="stylesheet" href="/static/styles/menu.css">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 
     <script type="module" src="/static/scripts/main.js"></script>
@@ -26,8 +27,43 @@
 
     <div class="_grid_select" id="_grid_select"></div>
 
+    <!--
     <input id="_color_select" type="number" min="0" max="15" step="1" value="0">
+    -->
     change this to change the color youre placing, values 0-15 are valid!
+
+    <div class="_menu" id="_menu">
+        <form class="_menu_form" id="_menu_form">
+            <fieldset>
+                <div>
+                    <input type="radio" class="_color_select" id="_c00" name="_color_select" value="0" />
+                    <input type="radio" class="_color_select" id="_c01" name="_color_select" value="1" />
+                    <input type="radio" class="_color_select" id="_c02" name="_color_select" value="2" />
+                    <input type="radio" class="_color_select" id="_c03" name="_color_select" value="3" />
+                    <input type="radio" class="_color_select" id="_c04" name="_color_select" value="4" />
+                    <input type="radio" class="_color_select" id="_c05" name="_color_select" value="5" />
+                    <input type="radio" class="_color_select" id="_c06" name="_color_select" value="6" />
+                    <input type="radio" class="_color_select" id="_c07" name="_color_select" value="7" />
+                    <input type="radio" class="_color_select" id="_c08" name="_color_select" value="8" />
+                    <input type="radio" class="_color_select" id="_c09" name="_color_select" value="9" />
+                    <input type="radio" class="_color_select" id="_c10" name="_color_select" value="10" />
+                    <input type="radio" class="_color_select" id="_c11" name="_color_select" value="11" />
+                    <input type="radio" class="_color_select" id="_c12" name="_color_select" value="12" />
+                    <input type="radio" class="_color_select" id="_c13" name="_color_select" value="13" />
+                    <input type="radio" class="_color_select" id="_c14" name="_color_select" value="14" />
+                    <input type="radio" class="_color_select" id="_c15" name="_color_select" value="15" />
+                </div>
+                <!--
+                <div>
+                    <button type="submit">Place! (this doesnt do anything)</button>
+                </div>
+                -->
+            </fieldset>
+        </form>
+    </div>
+
+
+
 
     <a href="https://GitHub.com/lasumn/platz/" class="footer" id="footer" target="_blank">GitHub</a>
 

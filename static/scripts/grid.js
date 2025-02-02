@@ -40,9 +40,11 @@ function handleMouseDown() {
 
 function handleMouseUp() {
     if (Date.now() - clickDownTime < clickThreshold) {
-        const colorSelect = document.getElementById("_color_select");
+        //const colorSelect = document.getElementById("_color_select");
+        const colorSelect = document.querySelector('input[name="_color_select"]:checked').value;
+        console.log(colorSelect);
         if (colorSelect) {
-            fetch(`/_cells/${currentCell[0]}-${currentCell[1]}-${colorSelect.value}`);
+            fetch(`/_cells/${currentCell[0]}-${currentCell[1]}-${colorSelect}`);
         }
     }
 }
