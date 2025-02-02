@@ -40,3 +40,16 @@ body {
     overflow: hidden;
     background-color: rgb(255, 254, 249);
 }
+
+.footer {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(68, 68, 68);
+    padding: 5px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+
+}
