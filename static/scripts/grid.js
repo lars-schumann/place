@@ -7,11 +7,16 @@ let cellsDim;
 let currentCell = [-1, -1];
 let lastMousePos = [-1, -1];
 let clickDownTime = 0;
+let zoomCounter = 0;
 const clickThreshold = 200;
 
 function handleMouseMove(event = null) {
     if (event) {
         lastMousePos = [event.clientX, event.clientY];
+    }
+
+    if (zoomCounter) {
+        return;
     }
 
     const { left, top, width, height } = grid.getBoundingClientRect();
@@ -42,12 +47,20 @@ function handleMouseUp() {
     }
 }
 
+function handleWheel(event) {
+    zoomCounter++;
+    setTimeout(() => {
+        zoomCounter--;
+    }, 40);
+}
+
 export async function initGrid() {
     cellsDim = await getCellsDim();
 
     grid.addEventListener("mousemove", handleMouseMove);
     grid.addEventListener("mousedown", handleMouseDown);
     grid.addEventListener("mouseup", handleMouseUp);
+    grid.addEventListener("wheel", handleWheel);
 
     setInterval(() => {
         handleMouseMove();
