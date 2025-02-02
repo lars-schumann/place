@@ -30,7 +30,6 @@
     transform: translate(0px, 0px);
     position: absolute;
     pointer-events: none;
-    transition: transform 0.05s ease;
     opacity: 1.0;
 }
 
@@ -39,6 +38,7 @@ body {
     height: 100%;
     overflow: hidden;
     background-color: rgb(255, 254, 249);
+    color: rgb(68, 68, 68);
 }
 
 .footer {
@@ -46,10 +46,9 @@ body {
     bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
-    color: rgb(68, 68, 68);
     padding: 5px 25px;
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
-
+    background-color: rgb(255, 254, 249);
 }

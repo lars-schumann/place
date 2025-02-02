@@ -1,75 +1,55 @@
 import { getCellsDim } from "./util.js";
 import { scale } from "./zoom.js";
 
-const grid = document.getElementById('_canvas_cell');
-
-const select = document.getElementById('_grid_select');
+const grid = document.getElementById("_canvas_cell");
+const select = document.getElementById("_grid_select");
 let cellsDim;
-export let currentCell = [-1, -1];
-const transform = [0.0, 0.0];
-let lastKnownMousePos = [0.0, 0.0];
+let currentCell = [-1, -1];
+let lastMousePos = [-1, -1];
+let clickDownTime = 0;
+const clickThreshold = 200;
 
-const clicktime = 200;
-
-let clickDownTime = Infinity;
-
-export function handleMouse(event) {
-
-    if (event != 0) {
-        lastKnownMousePos = [event.clientX, event.clientY];
+function handleMouseMove(event = null) {
+    if (event) {
+        lastMousePos = [event.clientX, event.clientY];
     }
 
+    const { left, top, width, height } = grid.getBoundingClientRect();
+    const [mouseX, mouseY] = [lastMousePos[0] - left, lastMousePos[1] - top];
 
-    const gridRect = grid.getBoundingClientRect();
+    currentCell = [
+        Math.floor((mouseX / width) * cellsDim[0]),
+        Math.floor((mouseY / height) * cellsDim[1])
+    ];
 
-    const mouseX = lastKnownMousePos[0] - gridRect.left;
-    const mouseY = lastKnownMousePos[1] - gridRect.top;
+    const [newX, newY] = [left + currentCell[0] * scale, top + currentCell[1] * scale];
 
-    const xPercent = mouseX / gridRect.width;
-    const yPercent = mouseY / gridRect.height;
+    select.style.transform = `translate(${newX}px, ${newY}px)`;
+    select.style.width = select.style.height = `${scale}px`;
 
-    const cellX = Math.floor(xPercent * cellsDim[0]);
-    const cellY = Math.floor(yPercent * cellsDim[1]);
-
-    currentCell = [cellX, cellY];
-
-
-    transform[0] = gridRect.left + currentCell[0] * scale;
-    transform[1] = gridRect.top + currentCell[1] * scale;
-
-    select.style.transform = `translate(${transform[0]}px, ${transform[1]}px)`;
-    select.style.width = `${scale}px`;
-    select.style.height = `${scale}px`;
-    //select.style.opacity = `${scale * scale / (64 * 64)}`;
 }
 
-function handleMouseDown(event) {
+function handleMouseDown() {
     clickDownTime = Date.now();
 }
 
-function handleMouseUp(event) {
-    if ((Date.now() - clickDownTime) < clicktime) {
-        console.log(Date.now() - clickDownTime);
-        if (document.getElementById('_color_select')) {
-            fetch(`/_cells/${currentCell[0]}-${currentCell[1]}-${document.getElementById('_color_select').value}`);
+function handleMouseUp() {
+    if (Date.now() - clickDownTime < clickThreshold) {
+        const colorSelect = document.getElementById("_color_select");
+        if (colorSelect) {
+            fetch(`/_cells/${currentCell[0]}-${currentCell[1]}-${colorSelect.value}`);
         }
     }
 }
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-
-function updateCell() {
-
-}
 export async function initGrid() {
     cellsDim = await getCellsDim();
 
-    grid.addEventListener("mousemove", handleMouse);
-    setInterval(() => handleMouse(0), 10);
-    //grid.addEventListener("wheel", handleMouse);
+    grid.addEventListener("mousemove", handleMouseMove);
     grid.addEventListener("mousedown", handleMouseDown);
     grid.addEventListener("mouseup", handleMouseUp);
 
+    setInterval(() => {
+        handleMouseMove();
+    }, 10);
 }
