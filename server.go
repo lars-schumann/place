@@ -10,10 +10,6 @@ import (
 	"github.com/gofiber/fiber/v3/middleware/static"
 )
 
-func randRange(min, max int) int {
-	return rand.IntN(max-min) + min
-}
-
 type point struct {
 	x   int //x-coord 1-1000
 	y   int //y-coord 1-1000
@@ -26,8 +22,8 @@ type point_in_time struct {
 }
 
 const (
-	cells_x_dim      = 250
-	cells_y_dim      = 250
+	cells_x_dim      = 1000
+	cells_y_dim      = 1000
 	update_keep_time = 2 * time.Second
 )
 
@@ -38,8 +34,10 @@ func main() {
 
 	for col := range cells {
 		for row := range cells[col] {
-			//cells[col][row] = randRange(0, 15)
-			cells[col][row] = 1 //(col + row*2) % 16
+			cells[col][row] = 1
+			if rand.IntN(100) == 0 {
+				cells[col][row] = rand.IntN(16)
+			}
 		}
 	}
 

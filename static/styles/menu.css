@@ -11,6 +11,9 @@
 ._menu_form {
     display: flex;
     flex-wrap: wrap;
+}
+
+fieldset {
     border: none;
 }
 
