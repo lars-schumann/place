@@ -6,6 +6,7 @@
     background-color: inherit;
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 5px;
 }
 
 ._menu_form {

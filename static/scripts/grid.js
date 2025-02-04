@@ -3,6 +3,8 @@ import { scale } from "./zoom.js";
 
 const grid = document.getElementById("_canvas_cell");
 const select = document.getElementById("_grid_select");
+const coordDisplay = document.getElementById("_coord_display");
+
 let cellsDim;
 let currentCell = [-1, -1];
 let lastMousePos = [-1, -1];
@@ -11,6 +13,7 @@ let zoomCounter = 0;
 const clickThreshold = 200;
 
 function handleMouseMove(event = null) {
+
     if (event) {
         lastMousePos = [event.clientX, event.clientY];
     }
@@ -29,6 +32,7 @@ function handleMouseMove(event = null) {
 
     const [newX, newY] = [left + currentCell[0] * scale, top + currentCell[1] * scale];
 
+    coordDisplay.innerHTML = currentCell;
     select.style.transform = `translate(${newX}px, ${newY}px)`;
     select.style.width = select.style.height = `${scale}px`;
 
