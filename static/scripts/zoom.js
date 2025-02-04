@@ -50,7 +50,7 @@ function handleWheel(event) {
 
     setTimeout(() => {
         mover.style.transition = `transform 0.0s ease`;
-    }, 50);
+    }, 51);
 
 
     //console.log(mouseX, mouseY);
