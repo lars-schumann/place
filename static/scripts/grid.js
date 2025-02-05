@@ -1,16 +1,49 @@
-import { getCellsDim } from './util.js';
+import { getCellsDim, canvas } from './util.js';
 import { scale } from './zoom.js';
 
-const grid = document.getElementById('_canvas_cell');
-const select = document.getElementById('_grid_select');
-const coordDisplay = document.getElementById('_coord_display');
+/**
+ * @type {HTMLDivElement}
+ */
+const select = /** @type {HTMLDivElement} */ (
+    document.getElementById('_grid_select')
+);
 
-let cellsDim;
+/**
+ * @type {HTMLDivElement}
+ */
+const coordDisplay = /** @type {HTMLDivElement} */ (
+    document.getElementById('_coord_display')
+);
+
+/**
+ * @type number
+ */
+const CLICK_THRESHOLD = 200;
+
+/**
+ * @type number[]
+ */
+let cellsDim = [-1, -1];
+
+/**
+ * @type number[]
+ */
 let currentCell = [-1, -1];
+
+/**
+ * @type number[]
+ */
 let lastMousePos = [-1, -1];
+
+/**
+ * number
+ */
 let clickDownTime = 0;
+
+/**
+ * number
+ */
 let zoomCounter = 0;
-const clickThreshold = 200;
 
 function handleMouseMove(event = null) {
     if (event) {
@@ -21,7 +54,7 @@ function handleMouseMove(event = null) {
         return;
     }
 
-    const { left, top, width, height } = grid.getBoundingClientRect();
+    const { left, top, width, height } = canvas.getBoundingClientRect();
     const [mouseX, mouseY] = [lastMousePos[0] - left, lastMousePos[1] - top];
 
     currentCell = [
@@ -44,7 +77,7 @@ function handleMouseDown() {
 }
 
 function handleMouseUp() {
-    if (Date.now() - clickDownTime < clickThreshold) {
+    if (Date.now() - clickDownTime < CLICK_THRESHOLD) {
         //const colorSelect = document.getElementById("_color_select");
         const colorSelect = document.querySelector(
             'input[name="_color_select"]:checked',
@@ -66,10 +99,10 @@ function handleWheel(event) {
 export async function initGrid() {
     cellsDim = await getCellsDim();
 
-    grid.addEventListener('mousemove', handleMouseMove);
-    grid.addEventListener('mousedown', handleMouseDown);
-    grid.addEventListener('mouseup', handleMouseUp);
-    grid.addEventListener('wheel', handleWheel);
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mousedown', handleMouseDown);
+    canvas.addEventListener('mouseup', handleMouseUp);
+    canvas.addEventListener('wheel', handleWheel);
 
     setInterval(() => {
         handleMouseMove();

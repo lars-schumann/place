@@ -1,4 +1,8 @@
+/**
+ * number[]
+ */
 let transform = [0.0, 0.0];
+
 export const mover = document.getElementById('_canvas_move');
 
 export function moveCanvas(dx, dy) {

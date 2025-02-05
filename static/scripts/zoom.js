@@ -1,8 +1,23 @@
 import { moveCanvas, mover } from './move.js';
 
-export let scale = 1.0;
-const scaleFactor = Math.SQRT2;
+/**
+ * @type {HTMLElement} // TODO: figure out why HTMLDivElement doesnt work
+ */
 const zoomer = document.getElementById('_canvas_zoom');
+
+/**
+ * @type number
+ */
+const SCALE_FACTOR = Math.SQRT2;
+
+/**
+ * @type number
+ */
+export let scale = 1.0;
+
+/**
+ * @type number
+ */
 let easeCounter = 0;
 
 function handleWheel(event) {
@@ -19,7 +34,7 @@ function handleWheel(event) {
     if ((pow == -1 && scale == 1) || (pow == 1 && scale == 64)) {
         return;
     }
-    scale = scale * Math.pow(scaleFactor, pow);
+    scale = scale * Math.pow(SCALE_FACTOR, pow);
 
     scale = Math.max(1.0, Math.min(64.0, scale));
     zoomer.style.transform = `scale(${scale})`;
@@ -40,11 +55,11 @@ function handleWheel(event) {
     mover.style.transition = `transform 0.05s ease`;
 
     if (event.deltaY < 0) {
-        moveCanvas(-mouseX * (scaleFactor - 1), -mouseY * (scaleFactor - 1));
+        moveCanvas(-mouseX * (SCALE_FACTOR - 1), -mouseY * (SCALE_FACTOR - 1));
     } else {
         moveCanvas(
-            (mouseX * (scaleFactor - 1)) / scaleFactor,
-            (mouseY * (scaleFactor - 1)) / scaleFactor,
+            (mouseX * (SCALE_FACTOR - 1)) / SCALE_FACTOR,
+            (mouseY * (SCALE_FACTOR - 1)) / SCALE_FACTOR,
         );
     }
 

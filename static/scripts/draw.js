@@ -1,7 +1,9 @@
-import { setCanvasSize } from './util.js';
+import { setCanvasSize, canvas } from './util.js';
 import { cellData } from './data.js';
-const canvas = document.getElementById('_canvas_cell');
 
+/**
+ * @type number[][]
+ */
 const colorsLookup = [
     [255, 255, 255, 255], //rgb(255, 255, 255)
     [212, 215, 217, 255], // #d4d7d9

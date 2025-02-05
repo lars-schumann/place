@@ -11,3 +11,10 @@ export async function setCanvasSize(canvas) {
     canvas.width = cellsDim[0];
     canvas.height = cellsDim[1];
 }
+
+/**
+ * @type {HTMLCanvasElement}
+ */
+export const canvas = /** @type {HTMLCanvasElement} */ (
+    document.getElementById('_canvas_cell')
+);

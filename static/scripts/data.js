@@ -1,5 +1,8 @@
 import { fetchData } from './util.js';
 
+/**
+ * @type number[][]
+ */
 export var cellData;
 
 async function updateCells(cells) {
