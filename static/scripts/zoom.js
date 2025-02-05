@@ -1,4 +1,4 @@
-import { moveCanvas, mover } from "./move.js";
+import { moveCanvas, mover } from './move.js';
 
 export let scale = 1.0;
 const scaleFactor = Math.SQRT2;
@@ -6,7 +6,6 @@ const zoomer = document.getElementById('_canvas_zoom');
 let easeCounter = 0;
 
 function handleWheel(event) {
-
     if (easeCounter) {
         return;
     }
@@ -14,7 +13,6 @@ function handleWheel(event) {
     setTimeout(() => {
         easeCounter--;
     }, 50);
-
 
     const pow = event.deltaY < 0 ? 1 : -1;
 
@@ -36,28 +34,27 @@ function handleWheel(event) {
     const beforeX = mouseX - middleX;
     const beforeY = mouseY - middleY;
 
-    const xPercent = mouseX / zoomRect.width - .5;
-    const yPercent = mouseY / zoomRect.height - .5;
+    const xPercent = mouseX / zoomRect.width - 0.5;
+    const yPercent = mouseY / zoomRect.height - 0.5;
 
     mover.style.transition = `transform 0.05s ease`;
-
 
     if (event.deltaY < 0) {
         moveCanvas(-mouseX * (scaleFactor - 1), -mouseY * (scaleFactor - 1));
     } else {
-        moveCanvas(mouseX * (scaleFactor - 1) / scaleFactor, mouseY * (scaleFactor - 1) / scaleFactor);
+        moveCanvas(
+            (mouseX * (scaleFactor - 1)) / scaleFactor,
+            (mouseY * (scaleFactor - 1)) / scaleFactor,
+        );
     }
 
     setTimeout(() => {
         mover.style.transition = `transform 0.0s ease`;
     }, 51);
 
-
     //console.log(mouseX, mouseY);
-
 }
 
-
 export function initZoom() {
-    zoomer.addEventListener("wheel", handleWheel);
+    zoomer.addEventListener('wheel', handleWheel);
 }

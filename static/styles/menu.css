@@ -36,86 +36,85 @@ fieldset {
     box-shadow: 0 0 0 3px #000000;
 }
 
-._color_select[value="0"],
-._color_select[value="0"]:checked {
+._color_select[value='0'],
+._color_select[value='0']:checked {
     border-color: #ffffff;
 }
 
-._color_select[value="1"],
-._color_select[value="1"]:checked {
+._color_select[value='1'],
+._color_select[value='1']:checked {
     border-color: #d4d7d9;
 }
 
-._color_select[value="2"],
-._color_select[value="2"]:checked {
+._color_select[value='2'],
+._color_select[value='2']:checked {
     border-color: #898d90;
 }
 
-._color_select[value="3"],
-._color_select[value="3"]:checked {
+._color_select[value='3'],
+._color_select[value='3']:checked {
     border-color: #000000;
 }
 
-._color_select[value="4"],
-._color_select[value="4"]:checked {
+._color_select[value='4'],
+._color_select[value='4']:checked {
     border-color: #9c6926;
 }
 
-._color_select[value="5"],
-._color_select[value="5"]:checked {
+._color_select[value='5'],
+._color_select[value='5']:checked {
     border-color: #ff99aa;
 }
 
-._color_select[value="6"],
-._color_select[value="6"]:checked {
+._color_select[value='6'],
+._color_select[value='6']:checked {
     border-color: #b44ac0;
 }
 
-._color_select[value="7"],
-._color_select[value="7"]:checked {
+._color_select[value='7'],
+._color_select[value='7']:checked {
     border-color: #811e9f;
 }
 
-._color_select[value="8"],
-._color_select[value="8"]:checked {
+._color_select[value='8'],
+._color_select[value='8']:checked {
     border-color: #51e9f4;
 }
 
-._color_select[value="9"],
-._color_select[value="9"]:checked {
+._color_select[value='9'],
+._color_select[value='9']:checked {
     border-color: #3690ea;
 }
 
-._color_select[value="10"],
-._color_select[value="10"]:checked {
+._color_select[value='10'],
+._color_select[value='10']:checked {
     border-color: #2450a4;
 }
 
-._color_select[value="11"],
-._color_select[value="11"]:checked {
+._color_select[value='11'],
+._color_select[value='11']:checked {
     border-color: #7eed56;
 }
 
-._color_select[value="12"],
-._color_select[value="12"]:checked {
+._color_select[value='12'],
+._color_select[value='12']:checked {
     border-color: #00a368;
 }
 
-._color_select[value="13"],
-._color_select[value="13"]:checked {
+._color_select[value='13'],
+._color_select[value='13']:checked {
     border-color: #ffd635;
 }
 
-._color_select[value="14"],
-._color_select[value="14"]:checked {
+._color_select[value='14'],
+._color_select[value='14']:checked {
     border-color: #ffa800;
 }
 
-._color_select[value="15"],
-._color_select[value="15"]:checked {
+._color_select[value='15'],
+._color_select[value='15']:checked {
     border-color: #ff4500;
 }
-
 
 /*
 // #ffffff

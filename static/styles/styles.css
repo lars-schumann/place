@@ -18,7 +18,7 @@
     z-index: -1;
     margin: 0;
     padding: 0;
-    transition: transform 0.0s ease;
+    transition: transform 0s ease;
 }
 
 ._grid_select {
@@ -30,7 +30,7 @@
     transform: translate(0px, 0px);
     position: absolute;
     pointer-events: none;
-    opacity: 1.0;
+    opacity: 1;
 }
 
 body {
@@ -54,7 +54,6 @@ body {
     background-color: inherit;
     color: inherit;
 }
-
 
 ._coord_display {
     height: fit-content;

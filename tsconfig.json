@@ -6,7 +6,5 @@
         "target": "es6",
         "noEmit": true
     },
-    "exclude": [
-        "node_modules"
-    ]
+    "exclude": ["node_modules"]
 }

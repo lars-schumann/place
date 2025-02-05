@@ -1,4 +1,4 @@
-import { fetchData } from "./util.js";
+import { fetchData } from './util.js';
 
 export var cellData;
 
@@ -10,9 +10,8 @@ async function updateCells(cells) {
     }
 
     updates.forEach(([x, y, colIndex]) => {
-        cells[x][y] = colIndex
+        cells[x][y] = colIndex;
     });
-
 }
 
 export async function initData() {
