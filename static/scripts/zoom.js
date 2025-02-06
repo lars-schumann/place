@@ -1,10 +1,12 @@
 import { moveCanvas } from './move.js';
-import { mover } from 'util.js';
+import { mover } from './util.js';
 
 /**
- * @type {HTMLElement} // TODO: figure out why HTMLDivElement doesnt work
+ * @type {HTMLDivElement}
  */
-const zoomer = document.getElementById('_canvas_zoom');
+const zoomer = /** @type {HTMLDivElement} */ (
+    document.getElementById('_canvas_zoom')
+);
 
 /**
  * @type number
@@ -21,7 +23,10 @@ export let scale = 1.0;
  */
 let easeCounter = 0;
 
-function handleWheel(event) {
+/**
+ * @param {WheelEvent} e
+ */
+function handleWheel(e) {
     if (easeCounter) {
         return;
     }
@@ -30,7 +35,7 @@ function handleWheel(event) {
         easeCounter--;
     }, 50);
 
-    const pow = event.deltaY < 0 ? 1 : -1;
+    const pow = e.deltaY < 0 ? 1 : -1;
 
     if ((pow == -1 && scale == 1) || (pow == 1 && scale == 64)) {
         return;
@@ -44,18 +49,12 @@ function handleWheel(event) {
     const middleX = zoomRect.left + zoomRect.width / 2;
     const middleY = zoomRect.top + zoomRect.height / 2;
 
-    const mouseX = event.clientX - middleX;
-    const mouseY = event.clientY - middleY;
-
-    const beforeX = mouseX - middleX;
-    const beforeY = mouseY - middleY;
-
-    const xPercent = mouseX / zoomRect.width - 0.5;
-    const yPercent = mouseY / zoomRect.height - 0.5;
+    const mouseX = e.clientX - middleX;
+    const mouseY = e.clientY - middleY;
 
     mover.style.transition = `transform 0.05s ease`;
 
-    if (event.deltaY < 0) {
+    if (e.deltaY < 0) {
         moveCanvas(-mouseX * (SCALE_FACTOR - 1), -mouseY * (SCALE_FACTOR - 1));
     } else {
         moveCanvas(
@@ -67,8 +66,6 @@ function handleWheel(event) {
     setTimeout(() => {
         mover.style.transition = `transform 0.0s ease`;
     }, 51);
-
-    //console.log(mouseX, mouseY);
 }
 
 export function initZoom() {

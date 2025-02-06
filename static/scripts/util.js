@@ -1,13 +1,24 @@
-export async function fetchData(url) {
+/**
+ *
+ * @param {string} url
+ * @returns {Promise<JSON>}
+ */
+export async function fetchDataJson(url) {
     return (await fetch(url)).json();
 }
 
 export async function getCellsDim() {
-    return await fetchData('/_cells/dim');
+    return await fetchDataJson('/_cells/dim');
 }
 
+/**
+ * @param {HTMLCanvasElement} canvas
+ */
 export async function setCanvasSize(canvas) {
-    const cellsDim = await fetchData('/_cells/dim');
+    /**
+     * @type {number[]}
+     */
+    const cellsDim = await (await fetch('/_cells/dim')).json();
     canvas.width = cellsDim[0];
     canvas.height = cellsDim[1];
 }

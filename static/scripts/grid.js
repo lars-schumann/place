@@ -45,9 +45,12 @@ let clickDuration = 0;
  */
 let zoomCounter = 0;
 
-function handleMouseMove(event = null) {
-    if (event) {
-        lastMousePos = [event.clientX, event.clientY];
+/**
+ * @param {MouseEvent | null}  e
+ */
+function handleMouseMove(e) {
+    if (e != null) {
+        lastMousePos = [e.clientX, e.clientY];
     }
 
     if (zoomCounter) {
@@ -67,29 +70,33 @@ function handleMouseMove(event = null) {
         top + currentCell[1] * scale,
     ];
 
-    coordDisplay.innerHTML = currentCell;
+    coordDisplay.innerHTML = currentCell.toString();
     select.style.transform = `translate(${newX}px, ${newY}px)`;
     select.style.width = select.style.height = `${scale}px`;
 }
 
-function handleMouseDown(event) {
+function handleMouseDown() {
     clickDuration = Date.now();
 }
 
 function handleMouseUp() {
     if (Date.now() - clickDuration < CLICK_THRESHOLD) {
-        //const colorSelect = document.getElementById("_color_select");
-        const colorSelect = document.querySelector(
-            'input[name="_color_select"]:checked',
-        ).value;
-        console.log(colorSelect);
-        if (colorSelect) {
-            fetch(`/_cells/${currentCell[0]}-${currentCell[1]}-${colorSelect}`);
+        /**
+         * @type {HTMLInputElement} | null
+         */
+        const colorSelected = /** @type {HTMLInputElement} | null */ (
+            document.querySelector('input[name="_color_select"]:checked')
+        );
+        if (colorSelected == null) {
+            return;
         }
+        fetch(
+            `/_cells/${currentCell[0]}-${currentCell[1]}-${colorSelected.value}`,
+        );
     }
 }
 
-function handleWheel(event) {
+function handleWheel() {
     zoomCounter++;
     setTimeout(() => {
         zoomCounter--;
@@ -97,7 +104,7 @@ function handleWheel(event) {
 }
 
 export async function initGrid() {
-    cellsDim = await getCellsDim();
+    cellsDim = await (await fetch('/_cells/dim')).json();
 
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mousedown', handleMouseDown);
@@ -105,6 +112,6 @@ export async function initGrid() {
     canvas.addEventListener('wheel', handleWheel);
 
     setInterval(() => {
-        handleMouseMove();
+        handleMouseMove(null);
     }, 10);
 }

@@ -23,13 +23,19 @@ const colorPalette = [
     [255, 69, 0, 255], // #ff4500
 ];
 
+const ctx = /** @type {CanvasRenderingContext2D} */ (canvas.getContext('2d')); //this really cant be null here
+const imageData = ctx.createImageData(canvas.width, canvas.height);
+
+/**
+ * @param {Uint8ClampedArray} data
+ * @param {number} index
+ * @param {number} colorIndex
+ */
 function updatePixelData(data, index, colorIndex) {
     data.set(colorPalette[colorIndex], index);
 }
 
 function refreshCanvas() {
-    const ctx = canvas.getContext('2d');
-    const imageData = ctx.createImageData(canvas.width, canvas.height);
     const data = imageData.data;
 
     for (let clm = 0; clm < cellData.length; clm++) {

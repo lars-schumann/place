@@ -1,13 +1,20 @@
-import { fetchData } from './util.js';
+import { fetchDataJson } from './util.js';
 
 /**
  * @type number[][]
  */
 export var cellData;
 
+/**
+ * @param {number[][]} cells
+ */
 async function updateCells(cells) {
-    const updates = await fetchData('/_cells/updates');
-    if (!updates) {
+    /**
+     * @type number[][] | null
+     */
+    const updates = await (await fetch('/_cells/updates')).json();
+
+    if (updates == null) {
         return;
     }
 
@@ -17,6 +24,6 @@ async function updateCells(cells) {
 }
 
 export async function initData() {
-    cellData = await fetchData('/_cells/full');
+    cellData = await (await fetch('/_cells/full')).json();
     setInterval(() => updateCells(cellData), 1000);
 }
