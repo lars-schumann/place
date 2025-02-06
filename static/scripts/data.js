@@ -8,7 +8,6 @@ export var cellData;
 async function updateCells(cells) {
     const updates = await fetchData('/_cells/updates');
     if (!updates) {
-        //console.log("no update");
         return;
     }
 

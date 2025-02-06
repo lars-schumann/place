@@ -38,7 +38,7 @@ let lastMousePos = [-1, -1];
 /**
  * number
  */
-let clickDownTime = 0;
+let clickDuration = 0;
 
 /**
  * number
@@ -72,12 +72,12 @@ function handleMouseMove(event = null) {
     select.style.width = select.style.height = `${scale}px`;
 }
 
-function handleMouseDown() {
-    clickDownTime = Date.now();
+function handleMouseDown(event) {
+    clickDuration = Date.now();
 }
 
 function handleMouseUp() {
-    if (Date.now() - clickDownTime < CLICK_THRESHOLD) {
+    if (Date.now() - clickDuration < CLICK_THRESHOLD) {
         //const colorSelect = document.getElementById("_color_select");
         const colorSelect = document.querySelector(
             'input[name="_color_select"]:checked',

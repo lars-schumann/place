@@ -4,7 +4,7 @@ import { cellData } from './data.js';
 /**
  * @type number[][]
  */
-const colorsLookup = [
+const colorPalette = [
     [255, 255, 255, 255], //rgb(255, 255, 255)
     [212, 215, 217, 255], // #d4d7d9
     [137, 141, 144, 255], // #898d90
@@ -24,7 +24,7 @@ const colorsLookup = [
 ];
 
 function updatePixelData(data, index, colorIndex) {
-    data.set(colorsLookup[colorIndex], index);
+    data.set(colorPalette[colorIndex], index);
 }
 
 function refreshCanvas() {

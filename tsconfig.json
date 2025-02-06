@@ -2,9 +2,9 @@
     "compilerOptions": {
         "allowJs": true,
         "checkJs": true,
+        "noEmit": true,
         "strict": false,
-        "target": "es6",
-        "noEmit": true
+        "target": "es6"
     },
     "exclude": ["node_modules"]
 }

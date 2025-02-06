@@ -1,4 +1,5 @@
-import { moveCanvas, mover } from './move.js';
+import { moveCanvas } from './move.js';
+import { mover } from 'util.js';
 
 /**
  * @type {HTMLElement} // TODO: figure out why HTMLDivElement doesnt work
