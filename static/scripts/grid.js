@@ -35,6 +35,11 @@ let currentCell = [-1, -1];
 /**
  * @type number[]
  */
+let currentDisplayedCell = [-1, -1];
+
+/**
+ * @type number[]
+ */
 let lastMousePos = [-1, -1];
 
 /**
@@ -72,9 +77,18 @@ function handleMouseMove(e) {
         top + currentCell[1] * scale,
     ];
 
-    coordDisplay.innerHTML = currentCell.toString();
     select.style.transform = `translate(${newX}px, ${newY}px)`;
     select.style.width = select.style.height = `${scale}px`;
+
+    if (
+        currentDisplayedCell[0] === currentCell[0] &&
+        currentDisplayedCell[1] === currentCell[1]
+    ) {
+        return;
+    }
+
+    currentDisplayedCell = [currentCell[0], currentCell[1]];
+    coordDisplay.innerHTML = currentDisplayedCell.toString();
 }
 
 function handleMouseDown() {
