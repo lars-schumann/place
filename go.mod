@@ -1,4 +1,4 @@
-module github.com/lasumn/platz
+module github.com/lasumn/place
 
 go 1.23.5
 
