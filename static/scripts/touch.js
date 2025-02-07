@@ -1,5 +1,6 @@
 import { mover, zoomer } from './util.js';
 import { moveCanvas } from './move.js';
+import { handleMouseMove } from './grid.js';
 
 /**
  * @type TouchList | null
@@ -32,12 +33,22 @@ function handleOneTouch(e) {
         oldTouches = e.touches;
         return;
     }
-    const dx = e.touches.item(0).clientX - oldTouches.item(0).clientX;
-    const dy = e.touches.item(0).clientY - oldTouches.item(0).clientY;
+    const [touchX, touchY] = [
+        e.touches.item(0).clientX,
+        e.touches.item(0).clientY,
+    ];
+    const dx = touchX - oldTouches.item(0).clientX;
+    const dy = touchY - oldTouches.item(0).clientY;
 
-    console.log('dx,dy: ', dx, dy);
     moveCanvas(dx, dy);
     oldTouches = e.touches;
+
+    const fakeMouseMove = new MouseEvent('mousemove', {
+        clientX: touchX,
+        clientY: touchY,
+    });
+
+    handleMouseMove(fakeMouseMove);
 }
 
 /**

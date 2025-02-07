@@ -50,7 +50,7 @@ let clickDuration = 0;
 /**
  * @param {MouseEvent | null}  e
  */
-function handleMouseMove(e) {
+export function handleMouseMove(e) {
     if (e != null) {
         lastMousePos = [e.clientX, e.clientY];
     }
