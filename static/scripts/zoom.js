@@ -1,12 +1,5 @@
 import { moveCanvas } from './move.js';
-import { mover } from './util.js';
-
-/**
- * @type {HTMLDivElement}
- */
-const zoomer = /** @type {HTMLDivElement} */ (
-    document.getElementById('_canvas_zoom')
-);
+import { mover, zoomer } from './util.js';
 
 /**
  * @type number

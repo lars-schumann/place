@@ -11,15 +11,22 @@ export async function setCanvasSize(canvas) {
 }
 
 /**
- * @type {HTMLCanvasElement}
+ * @type {HTMLDivElement}
  */
-export const canvas = /** @type {HTMLCanvasElement} */ (
-    document.getElementById('_canvas_cell')
+export const mover = /** @type {HTMLDivElement} */ (
+    document.getElementById('_canvas_move')
 );
 
 /**
  * @type {HTMLDivElement}
  */
-export const mover = /** @type {HTMLDivElement} */ (
-    document.getElementById('_canvas_move')
+export const zoomer = /** @type {HTMLDivElement} */ (
+    document.getElementById('_canvas_zoom')
+);
+
+/**
+ * @type {HTMLCanvasElement}
+ */
+export const canvas = /** @type {HTMLCanvasElement} */ (
+    document.getElementById('_canvas_cell')
 );
