@@ -1,5 +1,5 @@
 import { canvas } from './util.js';
-import { scale } from './zoom.js';
+import { scale, zoomCounter } from './zoom.js';
 import { cellData } from './data.js';
 import { refreshCanvas } from './draw.js';
 
@@ -46,11 +46,6 @@ let lastMousePos = [-1, -1];
  * number
  */
 let clickDuration = 0;
-
-/**
- * number
- */
-let zoomCounter = 0;
 
 /**
  * @param {MouseEvent | null}  e
@@ -118,20 +113,12 @@ function handleMouseUp() {
     }
 }
 
-function handleWheel() {
-    zoomCounter++;
-    setTimeout(() => {
-        zoomCounter--;
-    }, 40);
-}
-
 export async function initGrid() {
     cellsDim = await (await fetch('/_cells/dim')).json();
 
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mousedown', handleMouseDown);
     canvas.addEventListener('mouseup', handleMouseUp);
-    canvas.addEventListener('wheel', handleWheel);
 
     setInterval(() => {
         handleMouseMove(null);

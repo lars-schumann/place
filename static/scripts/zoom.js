@@ -21,19 +21,19 @@ export let scale = 1.0;
 /**
  * @type number
  */
-let easeCounter = 0;
+export let zoomCounter = 0;
 
 /**
  * @param {WheelEvent} e
  */
 function handleWheel(e) {
-    if (easeCounter) {
+    if (zoomCounter) {
         return;
     }
-    easeCounter++;
+    zoomCounter++;
     setTimeout(() => {
-        easeCounter--;
-    }, 50);
+        zoomCounter--;
+    }, 51);
 
     const pow = e.deltaY < 0 ? 1 : -1;
 
