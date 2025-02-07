@@ -1,5 +1,5 @@
 import { setCanvasSize, canvas } from './util.js';
-import { cellData } from './data.js';
+import { cellData, updates } from './data.js';
 
 /**
  * @type number[][]
@@ -37,6 +37,9 @@ function updatePixelData(data, index, colorIndex) {
 }
 
 export function refreshCanvas() {
+    if (updates == null) {
+        return;
+    }
     for (let clm = 0; clm < cellData.length; clm++) {
         for (let row = 0; row < cellData[clm].length; row++) {
             const index = (row * canvas.width + clm) * 4;
