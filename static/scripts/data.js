@@ -3,11 +3,13 @@
  */
 export let cellData;
 
+/**
+ * @type number[][] | null
+ */
+export let updates;
+
 async function updateCells() {
-    /**
-     * @type number[][] | null
-     */
-    const updates = await (await fetch('/_cells/updates')).json();
+    updates = await (await fetch('/_cells/updates')).json();
 
     if (updates == null) {
         return;
