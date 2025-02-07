@@ -1,9 +1,7 @@
-import { fetchDataJson } from './util.js';
-
 /**
  * @type number[][]
  */
-export var cellData;
+export let cellData;
 
 /**
  * @param {number[][]} cells

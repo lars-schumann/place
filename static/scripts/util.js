@@ -1,17 +1,4 @@
 /**
- *
- * @param {string} url
- * @returns {Promise<JSON>}
- */
-export async function fetchDataJson(url) {
-    return (await fetch(url)).json();
-}
-
-export async function getCellsDim() {
-    return await fetchDataJson('/_cells/dim');
-}
-
-/**
  * @param {HTMLCanvasElement} canvas
  */
 export async function setCanvasSize(canvas) {

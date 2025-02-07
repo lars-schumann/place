@@ -1,4 +1,4 @@
-import { getCellsDim, canvas } from './util.js';
+import { canvas } from './util.js';
 import { scale } from './zoom.js';
 
 /**
