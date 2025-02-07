@@ -3,16 +3,10 @@ import { scale, zoomCounter } from './zoom.js';
 import { cellData } from './data.js';
 import { forceRefreshCanvas } from './draw.js';
 
-/**
- * @type {HTMLDivElement}
- */
 const select = /** @type {HTMLDivElement} */ (
     document.getElementById('_grid_select')
 );
 
-/**
- * @type {HTMLDivElement}
- */
 const coordDisplay = /** @type {HTMLDivElement} */ (
     document.getElementById('_coord_display')
 );
