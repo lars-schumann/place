@@ -33,19 +33,20 @@ function handleOneTouch(e) {
         oldTouches = e.touches;
         return;
     }
-    const [touchX, touchY] = [
-        e.touches.item(0).clientX,
-        e.touches.item(0).clientY,
-    ];
-    const dx = touchX - oldTouches.item(0).clientX;
-    const dy = touchY - oldTouches.item(0).clientY;
 
-    moveCanvas(dx, dy);
+    const newTouch = /** @type Touch */ (e.touches.item(0)); //this cant be null here
+    const [newTouchX, newTouchY] = [newTouch.clientX, newTouch.clientY];
+
+    const oldTouch = /** @type Touch */ (oldTouches.item(0)); //this cant be null here
+    const [oldTouchX, oldTouchY] = [oldTouch.clientX, oldTouch.clientY];
+
+    moveCanvas(newTouchX - oldTouchX, newTouchY - oldTouchY);
+
     oldTouches = e.touches;
 
     const fakeMouseMove = new MouseEvent('mousemove', {
-        clientX: touchX,
-        clientY: touchY,
+        clientX: newTouchX,
+        clientY: newTouchY,
     });
 
     handleMouseMove(fakeMouseMove);
