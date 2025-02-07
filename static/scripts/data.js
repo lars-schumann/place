@@ -3,10 +3,7 @@
  */
 export let cellData;
 
-/**
- * @param {number[][]} cells
- */
-async function updateCells(cells) {
+async function updateCells() {
     /**
      * @type number[][] | null
      */
@@ -17,11 +14,11 @@ async function updateCells(cells) {
     }
 
     updates.forEach(([x, y, colIndex]) => {
-        cells[x][y] = colIndex;
+        cellData[x][y] = colIndex;
     });
 }
 
 export async function initData() {
     cellData = await (await fetch('/_cells/full')).json();
-    setInterval(() => updateCells(cellData), 1000);
+    setInterval(() => updateCells(), 1000);
 }

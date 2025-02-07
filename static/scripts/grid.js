@@ -1,5 +1,7 @@
 import { canvas } from './util.js';
 import { scale } from './zoom.js';
+import { cellData } from './data.js';
+import { refreshCanvas } from './draw.js';
 
 /**
  * @type {HTMLDivElement}
@@ -93,6 +95,12 @@ function handleMouseUp() {
         fetch(
             `/_cells/${currentCell[0]}-${currentCell[1]}-${colorSelected.value}`,
         );
+
+        //optimistic cell placement:
+        cellData[currentCell[0]][currentCell[1]] = parseInt(
+            colorSelected.value,
+        );
+        refreshCanvas();
     }
 }
 
