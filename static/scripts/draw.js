@@ -23,11 +23,6 @@ const colorPalette = [
     [255, 69, 0, 255], // #ff4500
 ];
 
-/**
- * @type boolean
- */
-let isFirstDraw = true;
-
 const ctx = /** @type {CanvasRenderingContext2D} */ (canvas.getContext('2d')); //this really cant be null here
 const imageData = ctx.createImageData(canvas.width, canvas.height);
 const data = imageData.data;
@@ -41,10 +36,14 @@ function updatePixelData(data, index, colorIndex) {
     data.set(colorPalette[colorIndex], index);
 }
 
-export function refreshCanvas() {
-    if (updates == null && !isFirstDraw) {
+function refreshCanvas() {
+    if (updates == null) {
         return;
     }
+    forceRefreshCanvas();
+}
+
+export function forceRefreshCanvas() {
     for (let clm = 0; clm < cellData.length; clm++) {
         for (let row = 0; row < cellData[clm].length; row++) {
             const index = (row * canvas.width + clm) * 4;
@@ -58,6 +57,6 @@ export function refreshCanvas() {
 
 export async function initDraw() {
     await setCanvasSize(canvas);
+    forceRefreshCanvas();
     setInterval(() => refreshCanvas(), 1000);
-    setTimeout(() => (isFirstDraw = false), 1000);
 }
