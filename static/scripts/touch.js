@@ -50,6 +50,12 @@ function handleTwoTouch(e) {
     }
 }
 
+function handleTouchEnd() {
+    oldTouches = null;
+}
+
 export function initTouch() {
     zoomer.addEventListener('touchmove', handleTouchMove);
+    zoomer.addEventListener('touchend', handleTouchEnd);
+    zoomer.addEventListener('touchcancel', handleTouchEnd);
 }
