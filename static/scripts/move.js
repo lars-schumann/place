@@ -26,5 +26,9 @@ function handleMove(e) {
 }
 
 export function initMove() {
+    moveCanvas(
+        (window.innerWidth - mover.clientWidth) / 2,
+        (window.innerHeight - mover.clientHeight) / 2,
+    );
     mover.addEventListener('mousemove', handleMove);
 }
