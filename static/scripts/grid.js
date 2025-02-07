@@ -1,7 +1,7 @@
 import { canvas } from './util.js';
 import { scale, zoomCounter } from './zoom.js';
 import { cellData } from './data.js';
-import { refreshCanvas } from './draw.js';
+import { forceRefreshCanvas } from './draw.js';
 
 /**
  * @type {HTMLDivElement}
@@ -109,7 +109,7 @@ function handleMouseUp() {
         cellData[currentCell[0]][currentCell[1]] = parseInt(
             colorSelected.value,
         );
-        refreshCanvas();
+        forceRefreshCanvas();
     }
 }
 
