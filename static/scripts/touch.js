@@ -92,7 +92,7 @@ function handleTwoTouch(e) {
         newTouch1Y,
     );
 
-    if (Math.abs(deltaLineLen) > 3) {
+    if (Math.abs(deltaLineLen) > 10) {
         const fakeWheel = new WheelEvent('wheel', {
             deltaY: deltaLineLen < 0 ? 1 : -1,
             clientX: newTouchMidPoint[0],
