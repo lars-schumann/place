@@ -32,6 +32,11 @@ let currentCell = [-1, -1];
 let currentDisplayedCell = [-1, -1];
 
 /**
+ * type number
+ */
+let currentDisplayedScale = 1.0;
+
+/**
  * @type number[]
  */
 let lastMousePos = [-1, -1];
@@ -70,14 +75,17 @@ export function handleMouseMove(e) {
     select.style.width = select.style.height = `${scale}px`;
 
     if (
-        currentDisplayedCell[0] === currentCell[0] &&
-        currentDisplayedCell[1] === currentCell[1]
+        currentDisplayedCell[0] == currentCell[0] &&
+        currentDisplayedCell[1] == currentCell[1] &&
+        currentDisplayedScale == scale
     ) {
         return;
     }
 
     currentDisplayedCell = [currentCell[0], currentCell[1]];
-    coordDisplay.innerHTML = currentDisplayedCell.toString();
+    currentDisplayedScale = scale;
+    coordDisplay.innerHTML =
+        '(' + currentDisplayedCell.toString() + ') | ' + scale.toFixed(1) + 'x';
 }
 
 function handleMouseDown() {
