@@ -30,7 +30,7 @@ export function handleWheel(e) {
 
     const pow = e.deltaY < 0 ? 1 : -1;
 
-    if ((pow == -1 && scale == 1) || (pow == 1 && scale == 64)) {
+    if ((pow == -1 && scale <= 1) || (pow == 1 && scale >= 64)) {
         return;
     }
     scale = scale * Math.pow(SCALE_FACTOR, pow);
