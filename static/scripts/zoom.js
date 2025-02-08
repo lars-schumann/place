@@ -4,6 +4,16 @@ import { mover, zoomer } from './util.js';
 /**
  * @type number
  */
+const MIN_SCALE = 0.5;
+
+/**
+ * @type number
+ */
+const MAX_SCALE = 64;
+
+/**
+ * @type number
+ */
 const SCALE_FACTOR = Math.SQRT2;
 
 /**
@@ -26,16 +36,16 @@ export function handleWheel(e) {
     zoomCounter++;
     setTimeout(() => {
         zoomCounter--;
-    }, 51);
+    }, 55);
 
     const pow = e.deltaY < 0 ? 1 : -1;
 
-    if ((pow == -1 && scale <= 1) || (pow == 1 && scale >= 64)) {
+    if ((pow == -1 && MIN_SCALE <= scale) || (pow == 1 && scale >= MAX_SCALE)) {
         return;
     }
     scale = scale * Math.pow(SCALE_FACTOR, pow);
 
-    scale = Math.max(1.0, Math.min(64.0, scale));
+    scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
     zoomer.style.transform = `scale(${scale})`;
 
     const zoomRect = zoomer.getBoundingClientRect();
