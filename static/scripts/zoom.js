@@ -40,7 +40,7 @@ export function handleWheel(e) {
 
     const pow = e.deltaY < 0 ? 1 : -1;
 
-    if ((pow == -1 && MIN_SCALE <= scale) || (pow == 1 && scale >= MAX_SCALE)) {
+    if ((pow == -1 && MIN_SCALE >= scale) || (pow == 1 && scale >= MAX_SCALE)) {
         return;
     }
     scale = scale * Math.pow(SCALE_FACTOR, pow);
