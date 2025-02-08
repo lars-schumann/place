@@ -4,7 +4,7 @@ import { mover, zoomer } from './util.js';
 /**
  * @type number
  */
-const MIN_SCALE = 0.5;
+const MIN_SCALE = 0.25;
 
 /**
  * @type number
