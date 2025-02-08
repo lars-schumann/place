@@ -134,7 +134,7 @@ function lineLength(p0x, p0y, p1x, p1y) {
  * @param {number} p1y
  */
 function lineMidpoint(p0x, p0y, p1x, p1y) {
-    return [p0x - p1x / 2, p0y - p1y / 2];
+    return [p0x + p1x / 2, p0y + p1y / 2];
 }
 
 function handleTouchEnd() {
