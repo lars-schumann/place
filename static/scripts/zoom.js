@@ -19,7 +19,7 @@ export let zoomCounter = 0;
 /**
  * @param {WheelEvent} e
  */
-function handleWheel(e) {
+export function handleWheel(e) {
     if (zoomCounter) {
         return;
     }
