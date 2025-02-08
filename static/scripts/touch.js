@@ -1,7 +1,7 @@
 import { mover, zoomer } from './util.js';
 import { moveCanvas } from './move.js';
-import { handleMouseMove } from './grid.js';
-import { handleWheel } from './zoom.js';
+import { handleMouseMove as gridHandleMouseMove } from './grid.js';
+import { handleWheel as zoomHandleWheel } from './zoom.js';
 
 /**
  * @type TouchList | null
@@ -50,7 +50,7 @@ function handleOneTouch(e) {
         clientY: newTouchY,
     });
 
-    handleMouseMove(fakeMouseMove);
+    gridHandleMouseMove(fakeMouseMove);
 }
 
 /**
@@ -98,8 +98,15 @@ function handleTwoTouch(e) {
             clientX: newTouchMidPoint[0],
             clientY: newTouchMidPoint[1],
         });
-        handleWheel(fakeWheel);
+        zoomHandleWheel(fakeWheel);
     }
+
+    const fakeMouseMove = new MouseEvent('mousemove', {
+        clientX: newTouchMidPoint[0],
+        clientY: newTouchMidPoint[1],
+    });
+
+    gridHandleMouseMove(fakeMouseMove);
 }
 /**
  * @param {number} o0x
