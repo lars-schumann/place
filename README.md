@@ -1,5 +1,5 @@
-original and legally distinct web app for placing colored cells on a canvas
+Original and legally distinct web app for placing colored cells on a canvas, inspired by Reddit's <a href="https://redditinc.com/blog/how-we-built-rplace">How We Built r/Place</a> 
 
-hopefully live on <a href="https://place.lars.sarl/">place.lars.sarl</a>
+Hopefully live on <a href="https://place.lars.sarl/">place.lars.sarl</a>
 
-try it on your phone aswell! (this took way too long to get working well)
+Try it on your phone aswell! (this took way too long to get working well)
