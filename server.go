@@ -48,8 +48,11 @@ func main() {
 		Level: compress.LevelBestSpeed,
 	}))
 
-	app.Use("/static", static.New("./static"))
+	app.Use("/static", static.New("./static", static.Config{
+		MaxAge: 5,
+	}))
 
+	
 	app.Get("/", func(c fiber.Ctx) error {
 		return c.Render("./views/index.html", fiber.Map{})
 	})
